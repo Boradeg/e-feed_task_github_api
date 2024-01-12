@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.e_feed_task_github_api.R
@@ -58,7 +57,10 @@ class MainActivity : AppCompatActivity() {
                         loadImageIntoImageView(imageUrl)
                         createdDate.text=issue.created_at
                         issueDesc.text=issue.body
-                        closedDate.text=issue.closed_at
+                        if(issue.closed_at!=null){
+                            closedDate.text=issue.closed_at
+                        }
+
                         issueStatus.text=issue.state
                         FancyToast.makeText(this@MainActivity,"Issue Title : ${issue.title}", FancyToast.LENGTH_LONG, FancyToast.INFO,true).show()
                         FancyToast.makeText(this@MainActivity,"Issue Created Data : ${issue.created_at}", FancyToast.LENGTH_LONG, FancyToast.INFO,true).show()
