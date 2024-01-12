@@ -6,9 +6,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.e_feed_task_github_api.R
 import com.example.e_feed_task_github_api.data_classes.Issue
 import com.example.e_feed_task_github_api.server_connection.GitHubService
+import com.shashank.sony.fancytoastlib.FancyToast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,10 +60,12 @@ class MainActivity : AppCompatActivity() {
                         issueDesc.text=issue.body
                         closedDate.text=issue.closed_at
                         issueStatus.text=issue.state
-                        Toast.makeText(this@MainActivity, "Issue Title : ${issue.title}", Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this@MainActivity, "Issue Created Data : ${issue.created_at}", Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this@MainActivity, "Issue Closed Date : ${issue.closed_at}", Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this@MainActivity, "User Name : ${issue.user.login}", Toast.LENGTH_SHORT).show()
+                        FancyToast.makeText(this@MainActivity,"Issue Title : ${issue.title}", FancyToast.LENGTH_LONG, FancyToast.INFO,true).show()
+                        FancyToast.makeText(this@MainActivity,"Issue Created Data : ${issue.created_at}", FancyToast.LENGTH_LONG, FancyToast.INFO,true).show()
+                        FancyToast.makeText(this@MainActivity,"Issue Closed Date : ${issue.closed_at}", FancyToast.LENGTH_LONG, FancyToast.INFO,true).show()
+                        FancyToast.makeText(this@MainActivity,"User Name : ${issue.user.login}", FancyToast.LENGTH_LONG, FancyToast.INFO,true).show()
+
+
                     }
                 } else {
                     // Handle unsuccessful response
@@ -76,10 +80,11 @@ class MainActivity : AppCompatActivity() {
 
     }
     fun loadImageIntoImageView(imageUrl: String) {
-        val imageView = findViewById<ImageView>(R.id.userImage)
+        val circularImageView = findViewById<ImageView>(R.id.userImage)
 
         Glide.with(this)
             .load(imageUrl)
-            .into(imageView)
+            .transform(CircleCrop()) // Apply circular transformation
+            .into(circularImageView)
     }
 }

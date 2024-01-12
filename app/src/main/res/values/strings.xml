@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">e-feed_task_github_api</string>
+    <string name="name">Name</string>
+    <string name="issue_not_solved">Issue Not Solved</string>
+    <string name="issue_status">Issue Status :</string>
+    <string name="issue_solved_date">Issue Solved Date :</string>
+    <string name="issue_creation_date">Issue Creation Date :</string>
+    <string name="issue_description">Issue Description :</string>
+    <string name="issue_detail">Issue Detail</string>
+    <string name="issue_title">Issue Title :</string>
 </resources>
